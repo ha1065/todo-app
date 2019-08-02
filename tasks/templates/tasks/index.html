@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Task{% endblock %}
+
+{% block content %}
+
+
+{% if latest_task_list %}
+    <ul>
+    {% for task in latest_task_list %}
+        <li><a href="{% url 'tasks:detail' task.id %}">{{ task.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No tasks are available.</p>
+{% endif %}
+{% endblock %}

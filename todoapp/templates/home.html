@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load socialaccount %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Welcome to the Todoapp</h1>
+{% if user.is_authenticated %}
+<p>Hi {{ user.username }}
+<li><a href="{% url 'tasks:create' %}">Create a Task</a></li>
+<li><a href="{% url 'tasks:index' %}">See existing tasks</a></li>
+<p><a href="{% url 'account_logout' %}">Log out</a></p>
+{% else %}
+<p><a href="{% url 'account_signup' %}">Sign Up</a></p>
+<p><a href="{% url 'account_login' %}">Log In </a></p>
+<p><a href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
+
+{% endif %}
+{% endblock %}

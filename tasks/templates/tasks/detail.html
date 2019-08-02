@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Task{% endblock %}
+
+{% block content %}
+
+{% if task.is_published %}
+    
+    <h1>Task Name : {{ task.name }}</h1>
+
+    <li>Description : {{ task.description }}</li>
+    <li>Publish Date : {{ task.pub_date }}</li>
+    <li>Due Date : {{ task.due_date }}</li>
+
+    <p><a href="{% url 'tasks:delete' task.id %}">Delete Task</a>
+    <br><a href="{% url 'tasks:update' task.id %}">Edit Task</a>
+    </p>
+{% else %}
+    <h1>Task not published yet</h1>
+{% endif %}
+{% endblock %}
