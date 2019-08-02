@@ -14,14 +14,6 @@ def index(request):
     }
     return render(request, 'tasks/index.html', context)
 
-# class TaskCreateView(CreateView):
-#     template_name = 'tasks/task_form.html'
-#     model = Task
-#     # form_class = TaskCreateForm
-#     fields = ('name', 'pub_date', 'due_date')
-
-#     success_url = "/tasks"
-
 class TaskCreateView(LoginRequiredMixin, CreateView):
 
     # another implementation
@@ -49,6 +41,8 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     template_name = 'tasks/detail.html'
+
+    # Alternative way to show detail only for tasks that have been published.
     
     # def get_context_data(self, **kwargs):
     #     ctx = super().get_context_data(**kwargs)
