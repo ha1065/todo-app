@@ -23,6 +23,9 @@ def index(request):
 #     success_url = "/tasks"
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
+
+    # another implementation
+
     # model = Task
     # template_name = 'tasks/task-create.html'
     # fields = ['name', 'description', 'pub_date', 'due_date']
@@ -30,6 +33,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
     # def form_valid(self, form):
     #     form.instance.author = self.request.user
     #     return super().form_valid(form)
+
     def get(self, request, *args, **kwargs):
         context = {'form': TaskCreateForm()}
         return render(request, 'tasks/task-create.html', context)
@@ -65,12 +69,12 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
 
     model = Task
     template_name = 'tasks/delete.html'
-    # success_url = reverse_lazy('home')
+    
 
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model=Task
     fields=['name','description','pub_date','due_date' ]
     template_name='tasks/task-edit.html'
-    # success_url = reverse_lazy('tasks:index')
+   
     
 
